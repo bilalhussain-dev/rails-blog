@@ -1,0 +1,5 @@
+<% flash.each do |name,msg| %>
+  <li class='alert alert-<%= "#{name}" %> list-unstyled'>
+    <strong><%= msg %></strong>
+  </li>
+<% end %>

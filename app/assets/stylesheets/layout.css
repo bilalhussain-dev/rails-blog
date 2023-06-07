@@ -1,0 +1,13 @@
+.hero__section {
+    width: 85%;
+    margin: 30px auto;
+    background-image: linear-gradient(to right bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.7)),url("https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+}
+
+.form__layout, .messages__layout, .post__layout {
+    width: 60%;
+    margin: 20px auto;
+}

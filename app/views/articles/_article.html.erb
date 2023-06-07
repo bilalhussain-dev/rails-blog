@@ -1,0 +1,24 @@
+<% @articles.each do |article| %>
+  <div class="card mb-2">
+    <div class="card-header">
+      By <%= article.user.username %>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= link_to article.title, article_path(article), class: 'text-success text-decoration-none' %></h5>
+      <p class="card-text"><%= article.description %></p>
+      <div class="d-flex align-items-center">
+        <a href="<%= article_path(article) %>" class="btn btn-outline-secondary btn-sm me-1">View</a>
+
+        <% if logged_in? && (article.user === current_user || current_user.admin?) %>
+          <a href="<%= edit_article_path(article) %>" class="btn btn-outline-primary btn-sm me-1">Edit</a>
+          <%= button_to "Delete", article_path(article), method: :delete, data:{turbo_confirm:"Are you sure?"}, class:"btn btn-outline-danger btn-sm" %>
+        <%end %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="me-3">Posted: <%= time_ago_in_words(article.created_at) %></span>
+      <span>Last update: <%= time_ago_in_words(article.updated_at) %></span>
+    </div>
+
+  </div>
+<% end %>

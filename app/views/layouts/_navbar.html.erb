@@ -1,0 +1,70 @@
+<header class="p-3 text-bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none me-3">
+        <strong>LOGO</strong>
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="<%= root_path %>" class="nav-link px-2 text-white">Home</a></li>
+        <li><a href="<%= about_path %>" class="nav-link px-2 text-white">About</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Articles
+          </a>
+          <ul class="dropdown-menu">
+            <% if logged_in? && current_user %>
+              <li><a class="dropdown-item" href="<%= new_article_path %>">Create new</a></li>
+            <%end %>
+            <li><a class="dropdown-item" href="<%= articles_path %>">Brows community</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li><a href="<%= users_path(@user) %>" class="nav-link px-2 text-black bg-warning rounded" type="button">Community Members</a></li>
+      </ul>
+
+
+      <div class="text-end">
+        <% if logged_in? %>
+
+
+          <li class="nav-item dropdown list-unstyled">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Hi, <%= current_user.username %>
+                  <span class="badge bg-success"><%= "Admin" if current_user.admin?  %></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="<%= new_article_path %>">Create new</a></li>
+              <li><a class="dropdown-item" href="<%= user_path(current_user) %>">View Profile</a></li>
+              <li><a class="dropdown-item" href="<%= edit_user_path(current_user) %>">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="<%= articles_path %>">Brows community</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="text-center">
+                <%= button_to "Logout", logout_path, method: :delete, class:'btn text-success btn-block' %>
+              </li>
+              <li class="text-center">
+                <%= button_to "Delete Account",
+                              user_path(current_user),
+                              method: :delete,
+                              class:'btn text-danger btn-block',
+                              data:{turbo_confirm: "Hi, #{current_user.username}. Do you want to delete your account?"} %>
+              </li>
+            </ul>
+          </li>
+
+
+
+
+          <%else %>
+          <a href="<%= login_path %>" type="button" class="btn btn-outline-light me-2">Login</a>
+          <a href="<%= signup_path %>" type="button" class="btn btn-warning">Sign-up</a>
+        <%end %>
+      </div>
+
+
+
+    </div>
+  </div>
+</header>

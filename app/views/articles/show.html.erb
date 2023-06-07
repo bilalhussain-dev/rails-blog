@@ -1,0 +1,23 @@
+<div class="post__layout">
+  <h1>Article Detail</h1>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-pills">Posted by: <%= @article.user.username %></div>
+    </div>
+    <div class="card-body">
+      <h3><%= @article.title %></h3>
+      <p><%= @article.description %></p>
+      <%= link_to "Back", articles_path, class: 'me-2' %>
+      <% if logged_in? && (@article.user === current_user || current_user.admin?) %>
+        <div class="d-flex align-items-center">
+          <%= link_to "Add", new_article_path %>
+          <%= link_to "Edit", edit_article_path(@article) %>
+        </div>
+      <%end %>
+  </div>
+
+  <div class="card-footer">
+    <span>Posted <%= time_ago_in_words(@article.updated_at) %></span>
+  </div>
+</div>
+</div>

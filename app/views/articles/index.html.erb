@@ -1,0 +1,24 @@
+<div class="post__layout mt-3">
+
+  <% if @articles.length === 0 %>
+
+    <div class="my-5 text-center">
+      <h1 class="h1 text-center">No Article listed yet.</h1>
+      <p class="lead text-center">At the moment, no article is listed yet. </p>
+      <%= link_to "Start a free trail", new_article_path, class: 'btn btn-warning btn-lg' %>
+    </div>
+  <%else %>
+
+
+    <h1>All, Articles</h1>
+    <%= render 'article' %>
+
+  <%end %>
+
+
+  <div class="d-flex justify-content-center my-4">
+    <div class="digg_pagination">
+      <%= will_paginate @articles, :container => false %>
+    </div>
+  </div>
+</div>
